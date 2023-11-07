@@ -1,50 +1,62 @@
 import java.util.LinkedList;
-
 import java.util.Scanner;
 import java.util.Random;
 
+// This is the Song class, we use it to store song information.
 class Song {
-    // This is the Song class, we use it to store song information.
+    // This variable stores the title of the song.
     private String title;
+
+    // This variable stores the artist of the song.
     private String artist;
 
+    // This is the constructor for creating a new song.
+    // It takes the title and artist as parameters and sets the corresponding variables.
     public Song(String title, String artist) {
-        // This is the constructor for creating a new song.
         this.title = title;
         this.artist = artist;
     }
 
+    // This method returns the title of the song.
     public String getTitle() {
-        // This method returns the title of the song.
         return title;
     }
 
+    // This method returns the artist of the song.
     public String getArtist() {
-        // This method returns the artist of the song.
         return artist;
     }
 
+    // This method provides a nice formatted string for the song.
+    // It returns the title of the song followed by "by" and then the artist of the song.
     @Override
     public String toString() {
-        // This method provides a nice formatted string for the song.
         return title + " by " + artist;
     }
 }
 
+// This is the MusicPlayer class that handles playing and managing songs.
 class MusicPlayer {
-    // This is our MusicPlayer class that handles playing and managing songs.
+    // A LinkedList to store the songs in the playlist
     private LinkedList<Song> playlist = new LinkedList<>();
+
+    // An integer to keep track of the current song index
     private int currentSongIndex = 0;
+
+    // A boolean to indicate whether shuffle mode is enabled
     private boolean isShuffleMode = false;
+
+    // A boolean to indicate whether repeat one song mode is enabled
     private boolean isRepeatOneSong = false;
 
+    // Adds a song to the playlist
     public void addSong(Song song) {
-        // You can use this method to add a song to the playlist.
         playlist.add(song);
+        System.out.println("Song added to the playlist.");
     }
 
+    // Removes a song from the playlist at the specified index
     public void removeSong(int index) {
-        // This method allows you to remove a song from the playlist.
         if (index >= 0 && index < playlist.size()) {
             playlist.remove(index);
             if (index <= currentSongIndex) {
@@ -56,8 +68,8 @@ class MusicPlayer {
         }
     }
 
+    // Toggles shuffle mode on and off
     public void toggleShuffleMode() {
-        // This toggles the shuffle mode on and off for random song selection.
         isShuffleMode = !isShuffleMode;
         if (isShuffleMode) {
             System.out.println("Shuffle mode is enabled.");
@@ -66,8 +78,8 @@ class MusicPlayer {
         }
     }
 
+    // Toggles repeat one song mode on and off
     public void toggleRepeatOneSong() {
-        // You can use this to toggle repeat mode for playing one song repeatedly.
         isRepeatOneSong = !isRepeatOneSong;
         if (isRepeatOneSong) {
             System.out.println("Repeat one song mode is enabled.");
@@ -76,8 +88,8 @@ class MusicPlayer {
         }
     }
 
+    // Starts playing the current song in the playlist
     public void play() {
-        // When you call this, it plays the current song in the playlist.
         if (playlist.isEmpty()) {
             System.out.println("Playlist is empty. Add songs first.");
         } else {
@@ -86,8 +98,8 @@ class MusicPlayer {
         }
     }
 
+    // Skips to the next song in the playlist
     public void next() {
-        // This method lets you play the next song in the playlist.
         if (playlist.isEmpty()) {
             System.out.println("Playlist is empty. Add songs first.");
         } else {
@@ -100,8 +112,8 @@ class MusicPlayer {
         }
     }
 
+    // Skips to the previous song in the playlist
     public void previous() {
-        // Use this to go back to the previous song in the playlist.
         if (playlist.isEmpty()) {
             System.out.println("Playlist is empty. Add songs first.");
         } else {
@@ -114,8 +126,8 @@ class MusicPlayer {
         }
     }
 
+    // Displays the current playlist with song numbers
     public void displayPlaylist() {
-        // This displays the current playlist with song numbers.
         System.out.println("Playlist:");
         int songNumber = 1;
         for (Song song : playlist) {
